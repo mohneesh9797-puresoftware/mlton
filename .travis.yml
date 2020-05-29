@@ -1,6 +1,8 @@
 language: shell
 os: linux
-arch: amd64
+arch: 
+    - amd64
+    - arm64
 
 addons:
   apt:
@@ -26,14 +28,22 @@ jobs:
     dist: bionic
     arch: amd64
     env:  CC=clang  MLTON_COMPILE_ARGS="-codegen llvm"   REGRESSION=false
-  - os: osx
-    osx_image: xcode11
-    arch: amd64
-    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen amd64"  REGRESSION=false
-  - os: osx
-    osx_image: xcode11
-    arch: amd64
+  - os:   linux
+    dist: bionic
+    arch: arm64
+    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen amd64"  REGRESSION=true
+  - os:   linux
+    dist: bionic
+    arch: arm64
+    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
+  - os:   linux
+    dist: bionic
+    arch: arm64
     env:  CC=clang  MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
+  - os:   linux
+    dist: bionic
+    arch: arm64
+    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen llvm"   REGRESSION=false
 
 script:
   - ./bin/travis-ci

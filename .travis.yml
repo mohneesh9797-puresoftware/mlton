@@ -10,41 +10,6 @@ addons:
   homebrew:
     packages: mlton
 
-jobs:
-  include:
-  - os:   linux
-    dist: bionic
-    arch: amd64
-    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen amd64"  REGRESSION=true
-  - os:   linux
-    dist: bionic
-    arch: amd64
-    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
-  - os:   linux
-    dist: bionic
-    arch: amd64
-    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
-  - os:   linux
-    dist: bionic
-    arch: amd64
-    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen llvm"   REGRESSION=false
-  - os:   linux
-    dist: bionic
-    arch: arm64
-    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen amd64"  REGRESSION=true
-  - os:   linux
-    dist: bionic
-    arch: arm64
-    env:  CC=gcc    MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
-  - os:   linux
-    dist: bionic
-    arch: arm64
-    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen c"      REGRESSION=false
-  - os:   linux
-    dist: bionic
-    arch: arm64
-    env:  CC=clang  MLTON_COMPILE_ARGS="-codegen llvm"   REGRESSION=false
-
 script:
   - ./bin/travis-ci
 
